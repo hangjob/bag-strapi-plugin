@@ -1,0 +1,80 @@
+{
+    "kind": "collectionType",
+    "collectionName": "bag_menus",
+    "info": {
+        "singularName": "bag-menu",
+        "pluralName": "bag-menus",
+        "displayName": "bag-menus"
+    },
+    "options": {
+        "draftAndPublish": false,
+        "comment": ""
+    },
+    "pluginOptions": {
+        "content-manager": {
+            "visible": true
+        },
+        "content-type-builder": {
+            "visible": false
+        }
+    },
+    "attributes": {
+        "title": {
+            "type": "string",
+            "required": true
+        },
+        "localesKey": {
+            "type": "string"
+        },
+        "file": {
+            "type": "string"
+        },
+        "path": {
+            "type": "string",
+            "required": true
+        },
+        "name": {
+            "type": "string",
+            "required": true
+        },
+        "icon": {
+            "type": "string"
+        },
+        "hasClose": {
+            "type": "boolean",
+            "default": true
+        },
+        "sort": {
+            "type": "integer",
+            "default": 0
+        },
+        "hasMenu": {
+            "type": "boolean",
+            "default": true
+        },
+        "hasRouter": {
+            "type": "boolean",
+            "default": true
+        },
+        "hasTab": {
+            "type": "boolean",
+            "default": true
+        },
+        "root": {
+            "type": "string",
+            "default": "layout"
+        },
+        "keepAlive": {
+            "type": "boolean",
+            "default": false
+        },
+        "overlayRouting": {
+            "type": "boolean",
+            "default": false
+        },
+        "extra": {
+            "type": "string"
+        }
+    }
+}
+

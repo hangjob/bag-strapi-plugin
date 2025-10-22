@@ -1,0 +1,87 @@
+{
+    "version": "0.0.4",
+    "keywords": [],
+    "type": "commonjs",
+    "exports": {
+        "./package.json": "./package.json",
+        "./strapi-admin": {
+            "source": "./admin/src/index.js",
+            "import": "./dist/admin/index.mjs",
+            "require": "./dist/admin/index.js",
+            "default": "./dist/admin/index.js"
+        },
+        "./strapi-server": {
+            "source": "./server/src/index.js",
+            "import": "./dist/server/index.mjs",
+            "require": "./dist/server/index.js",
+            "default": "./dist/server/index.js"
+        }
+    },
+    "files": [
+        "dist",
+        "README.md",
+        "QUICK_START.md",
+        "USER_CONFIG_GUIDE.md",
+        "GLOBAL_MIDDLEWARE_README.md",
+        "CRYPTO_UTILS_GUIDE.md",
+        "CRYPTO_CONFIG_GUIDE.md",
+        "CRYPTO_QUICK_REFERENCE.md",
+        "CRYPTO_EXAMPLES.md",
+        "RSA_CONFIG_GUIDE.md",
+        "ENCRYPTED_SIGN_GUIDE.md",
+        "TEST_ENCRYPTED_SIGN.md",
+        "CUSTOM_LOGIN_GUIDE.md",
+        "OVERRIDE_LOGIN_GUIDE.md",
+        "LOGIN_USAGE_EXAMPLE.md",
+        "HOW_TO_OVERRIDE_LOGIN.md",
+        "MENU_DATABASE.md",
+        "MENU_QUICK_START.md",
+        "DEBUG_GUIDE.md",
+        "config.template.js",
+        "env.example",
+        "server/GLOBAL_MIDDLEWARE.md",
+        "server/MIDDLEWARE_USAGE.md",
+        "server/test-sign.js",
+        "server/test-crypto.js",
+        "server/test-global-middleware.js",
+        "server/generate-encrypted-sign.js"
+    ],
+    "scripts": {
+        "build": "strapi-plugin build",
+        "watch": "strapi-plugin watch",
+        "watch:link": "strapi-plugin watch:link",
+        "verify": "strapi-plugin verify"
+    },
+    "dependencies": {
+        "@strapi/design-system": "^2.0.0-rc.30",
+        "@strapi/icons": "2.0.0-rc.30",
+        "react-intl": "^7.1.14"
+    },
+    "devDependencies": {
+        "@strapi/sdk-plugin": "^5.3.2",
+        "@strapi/strapi": "^5.28.0",
+        "prettier": "^3.6.2",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1",
+        "react-router-dom": "^6.30.1",
+        "styled-components": "^6.1.19"
+    },
+    "peerDependencies": {
+        "@strapi/sdk-plugin": "^5.3.2",
+        "@strapi/strapi": "^5.28.0",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1",
+        "react-router-dom": "^6.30.1",
+        "styled-components": "^6.1.19"
+    },
+    "strapi": {
+        "kind": "plugin",
+        "name": "bag-strapi-plugin",
+        "displayName": "",
+        "description": "bag-strapi-plugin provide a commonly used plugin for management"
+    },
+    "name": "bag-strapi-plugin",
+    "description": "bag-strapi-plugin provide a commonly used plugin for management",
+    "license": "MIT",
+    "author": "yanghang <470193837@qq.com>"
+}
