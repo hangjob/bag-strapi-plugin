@@ -489,9 +489,9 @@ grep "2024-01-01" logs/combined.log
 如果问题仍未解决：
 
 1. 📖 查看[完整文档](/guide/introduction)
-2. 🔍 搜索 [已知问题](https://github.com/yourusername/bag-strapi-plugin/issues)
-3. 🐛 提交 [新 Issue](https://github.com/yourusername/bag-strapi-plugin/issues/new)
-4. 💬 参与 [讨论](https://github.com/yourusername/bag-strapi-plugin/discussions)
+2. 🔍 搜索 [已知问题](https://github.com/hangjob/bag-strapi-plugin/issues)
+3. 🐛 提交 [新 Issue](https://github.com/hangjob/bag-strapi-plugin/issues/new)
+4. 💬 参与 [讨论](https://github.com/hangjob/bag-strapi-plugin/discussions)
 
 提交 Issue 时，请包含：
 - Strapi 版本

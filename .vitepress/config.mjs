@@ -96,7 +96,7 @@ export default defineConfig({
         },
 
         socialLinks: [
-            {icon: 'github', link: 'https://github.com/yourusername/bag-strapi-plugin'}
+            {icon: 'github', link: 'https://github.com/hangjob/bag-strapi-plugin'}
         ],
 
         search: {

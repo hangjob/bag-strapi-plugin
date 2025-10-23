@@ -340,6 +340,6 @@ DROP TABLE IF EXISTS bag_plugin_menus;
 遇到安装问题？
 
 - 📖 查看[调试指南](/guide/debugging)
-- 🐛 提交 [Issue](https://github.com/yourusername/bag-strapi-plugin/issues)
-- 💬 参与 [讨论](https://github.com/yourusername/bag-strapi-plugin/discussions)
+- 🐛 提交 [Issue](https://github.com/hangjob/bag-strapi-plugin/issues)
+- 💬 参与 [讨论](https://github.com/hangjob/bag-strapi-plugin/discussions)
 

@@ -173,10 +173,10 @@ strapi.auth.generateToken(user);
 ## 获取帮助
 
 - 📖 查看[完整文档](/guide/quick-start)
-- 🐛 提交 [Issue](https://github.com/yourusername/bag-strapi-plugin/issues)
-- 💬 参与 [讨论](https://github.com/yourusername/bag-strapi-plugin/discussions)
+- 🐛 提交 [Issue](https://github.com/hangjob/bag-strapi-plugin/issues)
+- 💬 参与 [讨论](https://github.com/hangjob/bag-strapi-plugin/discussions)
 
 ## 许可证
 
-[MIT License](https://github.com/yourusername/bag-strapi-plugin/blob/main/LICENSE)
+[MIT License](https://github.com/hangjob/bag-strapi-plugin/blob/main/LICENSE)
 
