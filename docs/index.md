@@ -6,7 +6,7 @@ hero:
   text: "Strapi 通用功能插件"
   tagline: 为 Strapi 提供完整的认证、加密、限流、菜单管理等功能
   image:
-    src: /logo.svg
+    src: https://vite.itnavs.com/doc/logo-min.png
     alt: bag-strapi-plugin
   actions:
     - theme: brand
@@ -14,7 +14,7 @@ hero:
       link: /guide/quick-start
     - theme: alt
       text: 查看 GitHub
-      link: https://github.com/yourusername/bag-strapi-plugin
+      link: https://github.com/hangjob/bag-strapi-plugin
 
 features:
   - icon: 🔐
@@ -190,7 +190,7 @@ module.exports = ({ env }) => ({
 
 ## 许可证
 
-[MIT License](https://github.com/yourusername/bag-strapi-plugin/blob/main/LICENSE)
+[MIT License](https://github.com/hangjob/bag-strapi-plugin/blob/main/LICENSE)
 
 ## 作者
 
@@ -201,5 +201,5 @@ module.exports = ({ env }) => ({
 如有问题或建议，欢迎：
 
 - 📖 查看[完整文档](/guide/introduction)
-- 🐛 提交 [Issue](https://github.com/yourusername/bag-strapi-plugin/issues)
-- 💬 参与 [讨论](https://github.com/yourusername/bag-strapi-plugin/discussions)
+- 🐛 提交 [Issue](https://github.com/hangjob/bag-strapi-plugin/issues)
+- 💬 参与 [讨论](https://github.com/hangjob/bag-strapi-plugin/discussions)
