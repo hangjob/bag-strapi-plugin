@@ -117,7 +117,61 @@ const register = ({ strapi }) => {
         await middleware(ctx, next);
     });
 
-    console.log('✅ [bag-strapi-plugin] 全局中间件注册完成');
+    console.log('✅ [bag-strapi-plugin] 全局签名验证中间件注册完成');
+
+    // 注册全局限流中间件
+    console.log('🔧 [bag-strapi-plugin] 注册全局限流中间件');
+    
+    const rateLimitMiddleware = strapi.plugin('bag-strapi-plugin').middleware('rate-limit');
+    
+    strapi.server.use(async (ctx, next) => {
+        // 获取限流配置
+        const rateLimitConfig = strapi.config.get('plugin::bag-strapi-plugin.rateLimit') ||
+                                strapi.config.get('plugin.bag-strapi-plugin.rateLimit', {});
+        
+        // 检查是否启用限流
+        if (rateLimitConfig.enabled !== true) {
+            strapi.log.debug('⏭️ [Rate Limit] 限流未启用，跳过');
+            return await next();
+        }
+
+        // 检查路径是否需要限流
+        const requestPath = ctx.request.url;
+        
+        // 豁免路径配置
+        const skipPaths = rateLimitConfig.skipPaths || [
+            '/admin',           // 管理后台
+            '/_health',         // 健康检查
+            '/uploads',         // 文件上传
+        ];
+
+        // 检查是否在豁免列表中
+        const shouldSkip = skipPaths.some(pattern => {
+            if (pattern instanceof RegExp) {
+                return pattern.test(requestPath);
+            }
+            if (typeof pattern === 'string') {
+                if (pattern.includes('*')) {
+                    const regex = new RegExp('^' + pattern.replace(/\*/g, '.*') + '$');
+                    return regex.test(requestPath);
+                }
+                return requestPath.startsWith(pattern);
+            }
+            return false;
+        });
+
+        if (shouldSkip) {
+            strapi.log.debug(`⏭️ [Rate Limit] 路径豁免: ${requestPath}`);
+            return await next();
+        }
+
+        // 应用限流中间件
+        strapi.log.debug(`🔍 [Rate Limit] 应用限流: ${requestPath}`);
+        const middleware = rateLimitMiddleware({}, { strapi });
+        await middleware(ctx, next);
+    });
+
+    console.log('✅ [bag-strapi-plugin] 全局限流中间件注册完成');
 };
 
 export default register;

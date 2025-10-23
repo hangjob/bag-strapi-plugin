@@ -14,6 +14,35 @@ module.exports = ({ env }) => ({
     enabled: true,
     config: {
       /**
+       * 认证系统配置
+       */
+      auth: {
+        // 是否启用验证码
+        // 建议：开发环境设为 false，生产环境设为 true
+        enableCaptcha: env.bool('ENABLE_CAPTCHA', true),
+        
+        // 验证码类型：'image' | 'math'
+        captchaType: env('CAPTCHA_TYPE', 'image'),
+        
+        // 验证码长度（仅对字符验证码有效）
+        captchaLength: env.int('CAPTCHA_LENGTH', 4),
+        
+        // 验证码过期时间（毫秒）
+        captchaExpireTime: env.int('CAPTCHA_EXPIRE_TIME', 300000), // 5分钟
+        
+        // 验证码最大尝试次数
+        captchaMaxAttempts: env.int('CAPTCHA_MAX_ATTEMPTS', 3),
+        
+        // JWT 配置
+        jwt: {
+          // JWT 密钥（强烈建议使用环境变量）
+          secret: env('JWT_SECRET', 'your-secret-key-change-in-production'),
+          // Token 过期时间
+          expiresIn: env('JWT_EXPIRES_IN', '7d'),
+        },
+      },
+      
+      /**
        * 加密工具配置
        */
       crypto: {
@@ -35,6 +64,65 @@ module.exports = ({ env }) => ({
         
         // Token 密钥
         tokenSecret: env('CRYPTO_TOKEN_SECRET', 'your-token-secret-key'),
+      },
+      
+      /**
+       * API 限流配置（全局中间件）
+       */
+      rateLimit: {
+        // 是否启用限流
+        enabled: env.bool('RATE_LIMIT_ENABLED', true),
+        
+        // 默认限流配置（应用于所有 API）
+        points: env.int('RATE_LIMIT_POINTS', 100),        // 时间窗口内允许的请求数
+        duration: env.int('RATE_LIMIT_DURATION', 60),     // 时间窗口（秒）
+        blockDuration: env.int('RATE_LIMIT_BLOCK', 0),    // 阻止时长（秒）
+        
+        // 存储方式：'memory' | 'redis'
+        // memory: 单实例适用，重启后清空
+        // redis: 多实例、分布式部署，需要配置 Redis
+        storage: env('RATE_LIMIT_STORAGE', 'memory'),
+        
+        // IP 白名单（这些 IP 不受限流限制）
+        whitelist: env.array('RATE_LIMIT_WHITELIST', [
+          // '127.0.0.1',
+          // '::1',
+          // '192.168.*',
+        ]),
+        
+        // 路径豁免（这些路径不应用限流）
+        skipPaths: [
+          '/admin',           // 管理后台
+          '/_health',         // 健康检查
+          '/uploads',         // 文件上传
+        ],
+        
+        // 针对特定路径的限流规则（覆盖默认配置）
+        pathRules: {
+          // 登录接口：严格限流
+          '/api/auth/login': {
+            points: 5,
+            duration: 900,      // 15分钟
+            blockDuration: 1800, // 阻止30分钟
+            message: '登录尝试次数过多，请30分钟后再试',
+          },
+          // 注册接口：更严格限流
+          '/api/auth/register': {
+            points: 3,
+            duration: 3600,      // 1小时
+            blockDuration: 7200, // 阻止2小时
+            message: '注册次数过多，请2小时后再试',
+          },
+          // 验证码接口：适度限流
+          '/api/captcha/*': {
+            points: 10,
+            duration: 60,
+            message: '获取验证码过于频繁，请稍后再试',
+          },
+        },
+        
+        // 自定义响应消息
+        message: env('RATE_LIMIT_MESSAGE', '请求过于频繁，请稍后再试'),
       },
       
       /**

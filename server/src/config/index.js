@@ -1,10 +1,87 @@
 export default {
     default: {
+        // 认证系统配置
+        auth: {
+            // 是否启用验证码（默认启用）
+            enableCaptcha: true,
+
+            // 验证码类型：'image' | 'math' | 'sms' | 'email'
+            captchaType: 'image',
+
+            // 验证码长度（字符验证码）
+            captchaLength: 4,
+
+            // 验证码过期时间（毫秒）
+            captchaExpireTime: 300000, // 5分钟
+
+            // 验证码最大尝试次数
+            captchaMaxAttempts: 3,
+
+            // JWT 配置
+            jwt: {
+                // JWT 密钥（强烈建议在主项目配置中使用环境变量覆盖）
+                secret: '',  // 用户必须配置
+                // Token 过期时间
+                expiresIn: '7d',
+            },
+        },
+
+        // API 限流配置
+        rateLimit: {
+            // 是否启用限流（默认关闭，由用户决定是否启用）
+            enabled: true,
+
+            // 限流配置
+            points: 100,           // 时间窗口内允许的请求数
+            duration: 60,          // 时间窗口（秒）
+            blockDuration: 0,      // 阻止时长（秒），0 表示不阻止
+
+            // 存储方式：'memory' | 'redis'
+            storage: 'memory',
+
+            // IP 白名单（这些 IP 不受限流限制）
+            whitelist: [],
+
+            // 路径豁免（这些路径不受限流限制）
+            skipPaths: [
+                '/admin',           // 管理后台
+                '/_health',         // 健康检查
+                '/uploads',         // 文件上传路径
+            ],
+
+            // 针对特定路径的限流规则（可选）
+            pathRules: {
+                // 登录接口：5次/15分钟
+                '/api/auth/login': {
+                    points: 5,
+                    duration: 900,
+                    blockDuration: 1800,
+                    message: '登录尝试次数过多，请30分钟后再试',
+                },
+                // 注册接口：3次/小时
+                '/api/auth/register': {
+                    points: 3,
+                    duration: 3600,
+                    blockDuration: 7200,
+                    message: '注册次数过多，请2小时后再试',
+                },
+                // 验证码接口：10次/分钟
+                '/api/captcha/*': {
+                    points: 10,
+                    duration: 60,
+                    message: '获取验证码过于频繁，请稍后再试',
+                },
+            },
+
+            // 自定义响应消息
+            message: '请求过于频繁，请稍后再试222',
+        },
+
         // 签名验证中间件默认配置
         // 用户可以在主项目的 config/plugins.js 中覆盖这些配置
         signVerify: {
             // 是否启用签名验证（默认关闭，由用户决定是否启用）
-            enabled: true,
+            enabled: false,
 
             // 验证模式：'simple' | 'encrypted' | 'both'
             // simple: 简单签名列表验证

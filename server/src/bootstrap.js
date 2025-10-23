@@ -1,4 +1,4 @@
-const bootstrap = ({strapi}) => {
+const bootstrap = async ({ strapi }) => {
     // bootstrap phase
 };
 

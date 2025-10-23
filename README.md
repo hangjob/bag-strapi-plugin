@@ -148,6 +148,12 @@ npm run verify
 yalc remove bag-strapi-plugin
 ```
 
+
+### 安装必要包
+```bash
+pnpm i svg-captcha bcrypt rate-limiter-flexible @strapi/icons
+```
+
 ---
 
 ## 📚 文档
