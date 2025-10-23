@@ -9,7 +9,7 @@ export default defineConfig({
     description: "一个为 Strapi 提供通用功能的插件，包含认证、加密、限流、菜单管理等功能",
 
     themeConfig: {
-        logo: '/logo.svg',
+        logo: 'https://vite.itnavs.com/doc/logo-min.png',
 
         nav: [
             {text: '首页', link: '/'},
