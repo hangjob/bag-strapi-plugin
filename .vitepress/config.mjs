@@ -4,7 +4,7 @@ import {defineConfig} from 'vitepress'
 export default defineConfig({
     srcDir: "docs",
     outDir:"./docs_web",
-    base: "/",
+    base: "./docs_web",
     title: "bag-strapi-plugin",
     description: "一个为 Strapi 提供通用功能的插件，包含认证、加密、限流、菜单管理等功能",
 
